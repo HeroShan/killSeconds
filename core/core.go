@@ -8,18 +8,17 @@ type Kill struct{
 	SpLock sync.Locker
 	List *tools.ListNode
 }
-func InitList(n int)(kill *Kill){
+func InitList(n int)(*Kill){
 	var(
 		i int
-		lock sync.Locker
 		list tools.ListNode
 	)
 	
 	for i = 0; i < n; i++{
 		list.AddHeadList(i)
 	}
-	lock = tools.NewSpinLock()
-	kill.SpLock = lock
+	kill := new(Kill)
+	kill.SpLock = tools.NewSpinLock()
 	kill.List = &list
 	return kill
 	

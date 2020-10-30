@@ -37,6 +37,10 @@ func (this *ListNode)AddHeadList(n int) {
 
 
 func (node *ListNode)DelNode() {
+	if(node.Next==nil){
+		node = nil
+		return
+	}
     next := node.Next
     for next.Next != nil {
         node.Val = next.Val
