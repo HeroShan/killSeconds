@@ -2,7 +2,7 @@ package tools
 import(
 	"fmt"
 )
-//列表
+//链表
 type ListNode struct {
     Val 	int
   	Next 	*ListNode
@@ -19,7 +19,7 @@ func (this *ListNode)AddTailList(n int) {
 		this.Next = &temp	
 			
 }
-
+//头部空添加
 func (this *ListNode)AddHeadList(n int)(*ListNode){
 	var temp ListNode
 	temp.Next = this
@@ -43,6 +43,7 @@ func (node *ListNode)DelNode() {
     node.Next = nil
 }
 
+//计算链表长度
 func (this *ListNode)Length() (n int) {
 	for this.Next != nil{
 		this = this.Next

@@ -5,5 +5,5 @@ import(
 )
 
 func TestInitList(t *testing.T){
-	InitList(1)
+	InitList(100)
 }

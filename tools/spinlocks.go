@@ -1,4 +1,5 @@
 package tools
+//自旋锁
 import(
 	"sync"
 	"runtime"

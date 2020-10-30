@@ -7,6 +7,8 @@ import(
 type Kill struct{
 	SpLock sync.Locker
 	List *tools.ListNode
+	stop  bool //停止秒杀
+
 }
 func InitList(n int)(*Kill){
 	var(
@@ -22,8 +24,25 @@ func InitList(n int)(*Kill){
 	return kill
 	
 }
-func (kill *Kill)GetKillOption(){
+//监听器  监听链表为空停止秒杀
+func (kill *Kill)Monitor(){
+	var listLength int
+	for{
+		listLength = kill.List.Length()
+		if listLength == 0{
+			kill.stop = true
+			break
+		}
+		kill.stop = false
+	}
+
+}
+func (kill *Kill)GetKillOption()(over bool){
+	if kill.stop == true{
+		return kill.stop
+	}
 	kill.SpLock.Lock()
 	kill.List.DelNode()
 	kill.SpLock.Unlock()
+	return kill.stop
 }
