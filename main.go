@@ -3,6 +3,7 @@ package main
 import(
 	"SecondsKill/core"
 	"fmt"
+	"os"
 	"time"
 )
 func main(){
@@ -41,6 +42,9 @@ func main(){
 	for{
 		time.Sleep(3)
 		p = kill.List.Length()
+		if p == 0{
+		 os.Exit(0)
+		}
 		fmt.Printf("i:%d \n",p)
 	}
 	
