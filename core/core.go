@@ -11,15 +11,14 @@ type Kill struct{
 func InitList(n int)(*Kill){
 	var(
 		i int
-		list tools.ListNode
 	)
-	
+	list := new(tools.ListNode)
 	for i = 0; i < n; i++{
-		list.AddHeadList(i)
+		list = list.AddHeadList(i)
 	}
 	kill := new(Kill)
 	kill.SpLock = tools.NewSpinLock()
-	kill.List = &list
+	kill.List = list
 	return kill
 	
 }

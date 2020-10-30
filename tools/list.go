@@ -20,19 +20,11 @@ func (this *ListNode)AddTailList(n int) {
 			
 }
 
-func (this *ListNode)AddHeadList(n int) {
+func (this *ListNode)AddHeadList(n int)(*ListNode){
 	var temp ListNode
-	temp.Next = nil
+	temp.Next = this
 	temp.Val = n
-	for{
-		if this.Next == nil {
-			this.Next = &temp
-			break
-		}else{
-			this = this.Next
-		}
-	}
-	
+	return &temp	
 }
 
 
