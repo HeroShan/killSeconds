@@ -37,6 +37,7 @@ func (kill *Kill)Monitor(){
 	}
 
 }
+//获取一条秒杀记录
 func (kill *Kill)GetKillOption()(over bool){
 	if kill.stop == true{
 		return kill.stop

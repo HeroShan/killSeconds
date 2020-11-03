@@ -19,7 +19,7 @@ func (this *ListNode)AddTailList(n int) {
 		this.Next = &temp	
 			
 }
-//头部空添加
+//头部添加
 func (this *ListNode)AddHeadList(n int)(*ListNode){
 	var temp ListNode
 	temp.Next = this
