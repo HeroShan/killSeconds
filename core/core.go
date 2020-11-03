@@ -3,6 +3,7 @@ package core
 import(
 	"SecondsKill/tools"
 	"sync"
+	"time"
 )
 type Kill struct{
 	SpLock sync.Locker
@@ -33,6 +34,7 @@ func (kill *Kill)Monitor(){
 			kill.stop = true
 			break
 		}
+		time.Sleep(1/100)
 		kill.stop = false
 	}
 

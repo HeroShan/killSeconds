@@ -1,12 +1,13 @@
-package server
+package main
 
 import (
 	"net"
 	"SecondsKill/core"
+	"time"
 )
 
 //TcpServer
-func TcpServer() {
+func main() {
 	var over bool
 	var writeMsg string
 	//初始化秒杀链表
@@ -30,7 +31,7 @@ func TcpServer() {
 			}
 			conn.Write([]byte(writeMsg))
 		}
- 
+		time.Sleep(1/100)
 	}
 
 }

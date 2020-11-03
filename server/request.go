@@ -17,7 +17,7 @@ func (timeString *StartTime)Start()(bool){
 
 func ks(c *gin.Context){	
 	var t StartTime
-	t.Now = "2020-11-03 17:30:00"
+	t.Now = "2020-11-03 19:30:00"
 	log.Printf("%v\n\n",t.Start())
 	if t.Start() == true {
 		result := TcpClient()

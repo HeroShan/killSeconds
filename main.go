@@ -4,7 +4,5 @@ import(
 	"SecondsKill/server"
 )
 func main(){
-	go server.TcpServer()
-	server.GinHttp()
-	
+	server.GinHttp()	
 }
