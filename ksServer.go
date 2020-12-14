@@ -11,7 +11,7 @@ func main() {
 	var over bool
 	var writeMsg string
 	//初始化秒杀链表
-	kill := core.InitList(2)
+	kill := core.InitList(10000)
 	go kill.Monitor()
 	listener,_ := net.Listen("tcp","127.0.0.1:9999")
 	
@@ -31,7 +31,7 @@ func main() {
 			}
 			conn.Write([]byte(writeMsg))
 		}
-		time.Sleep(1/100)
+		time.Sleep(100)
 	}
 
 }

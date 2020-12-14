@@ -12,9 +12,7 @@ type Kill struct{
 
 }
 func InitList(n int)(*Kill){
-	var(
-		i int
-	)
+	var i int
 	list := new(tools.ListNode)
 	for i = 0; i < n; i++{
 		list = list.AddHeadList(i)
