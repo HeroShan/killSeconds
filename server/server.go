@@ -3,6 +3,7 @@ package server
 import (
 	"SecondsKill/core"
 )
+type coreKs interface{}
 type Kschan struct{
 	kspush chan<- bool
 	kspop  <-chan bool

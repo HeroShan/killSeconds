@@ -1,9 +1,5 @@
 package server
 
 import(
-	"testing"
+	_"testing"
 )
-
-func TestTcpServer(t *testing.T){
-	TcpServer()
-}
