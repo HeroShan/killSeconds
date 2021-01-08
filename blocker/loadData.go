@@ -1,7 +1,7 @@
 package blocker
 
 import(
-	"os"
+	_"os"
 	"log"
 	_"sync"
 )
@@ -18,16 +18,6 @@ type blocker struct{
 	Index	int
 	Value	interface{}
 	Next 	*blocker
-}
-
-func LoadJson(path string) []byte {
-	jsonData := make([]byte,1000)
-	file,err := os.Open(path); if err != nil{
-		log.Printf("open file is fail\n")
-	}
-	file.Read(jsonData)
-	file.Close()
-	return jsonData
 }
 
 type LoadData func(data []byte) []LoadDataStr
@@ -52,8 +42,12 @@ func NewBlockers(blockerMax int) *Blockers{
 	 
 }
 
-func (bs *Blockers)DataLoading(data []LoadDataStr){
-
+func (bs *Blockers)DataLoading(format LoadData){
+	formatData := format
+	// for k,v := range formatData{
+	// 	log.Printf(k,v)
+	// }
+	log.Printf("%#v\n",formatData)
 	
 	
 }
