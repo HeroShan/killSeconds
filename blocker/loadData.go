@@ -11,6 +11,7 @@ type Blockers struct{
 	Num	int
 	Status	string	
 	Max	int
+	FormatDataFunc	func()
 }
 
 type blocker struct{
@@ -20,7 +21,7 @@ type blocker struct{
 }
 
 func LoadJson(path string) []byte {
-	var jsonData []byte
+	jsonData := make([]byte,1000)
 	file,err := os.Open(path); if err != nil{
 		log.Printf("open file is fail\n")
 	}
@@ -29,6 +30,11 @@ func LoadJson(path string) []byte {
 	return jsonData
 }
 
+type LoadData func(data []byte) []LoadDataStr
+type LoadDataStr struct{
+	Index int
+	Value interface{}
+}
 
 func NewBlockers(blockerMax int) *Blockers{
 	var b blocker
@@ -44,6 +50,12 @@ func NewBlockers(blockerMax int) *Blockers{
 	bs.Max = blockerMax
 	return bs
 	 
+}
+
+func (bs *Blockers)DataLoading(data []LoadDataStr){
+
+	
+	
 }
 
 func chunkBucket(){
