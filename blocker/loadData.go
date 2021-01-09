@@ -20,10 +20,13 @@ type blocker struct{
 	Next 	*blocker
 }
 
-type LoadData func(data []byte) []LoadDataStr
-type LoadDataStr struct{
+type LoadData func(data []byte) LoadDataStr
+type LoadDataInfo struct{
 	Index int
 	Value interface{}
+}
+type LoadDataStr struct{
+	data []LoadDataInfo
 }
 
 func NewBlockers(blockerMax int) *Blockers{
