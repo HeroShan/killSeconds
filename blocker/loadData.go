@@ -2,7 +2,7 @@ package blocker
 
 import(
 	_"os"
-	"log"
+	_"log"
 	_"sync"
 )
 
@@ -47,9 +47,12 @@ func NewBlockers(blockerMax int) *Blockers{
 
 func (bs *Blockers)DataLoading(format LoadData,data []byte){
 	formatData := format(data)
-
-	for k,v := range formatData.data{
-		log.Printf("%v,%v\n",k,v)
+	var(
+		
+	)
+	for k,_ := range formatData.data{
+		k++
+		//log.Printf("%v,%v\n",k,v)
 	}
 	//log.Printf("%#v\n",formatData)
 	
