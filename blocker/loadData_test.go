@@ -29,15 +29,16 @@ func TestDataLoading(t *testing.T){
 	data := loadJson(path)
 	//log.Println(string(data))
 	var ldstr LoadDataInfo
-	var emails Ed
 
 	var ldfunc LoadData
-	err := json.Unmarshal(data,&emails);if err != nil{
-		panic(err)
-	}
+	var emails Ed
+	
 	//log.Printf("%#v\n",emails)
-	ldfunc = func(datajson []byte) (ldd LoadDataStr){
-		for k,v := range datajson{
+	ldfunc = func(wqq []byte) (ldd LoadDataStr){
+		err := json.Unmarshal(wqq,&emails);if err != nil{
+			panic(err)
+		}
+		for k,v := range emails.Ddd{
 			ldstr.Index = k
 			ldstr.Value = v
 			ldd.data = append(ldd.data,ldstr)
