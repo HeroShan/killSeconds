@@ -45,12 +45,13 @@ func NewBlockers(blockerMax int) *Blockers{
 	 
 }
 
-func (bs *Blockers)DataLoading(format LoadData){
-	formatData := format
-	// for k,v := range formatData{
-	// 	log.Printf(k,v)
-	// }
-	log.Printf("%#v\n",formatData)
+func (bs *Blockers)DataLoading(format LoadData,data []byte){
+	formatData := format(data)
+
+	for k,v := range formatData.data{
+		log.Printf("%v,%v\n",k,v)
+	}
+	//log.Printf("%#v\n",formatData)
 	
 	
 }

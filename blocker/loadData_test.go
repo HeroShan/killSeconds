@@ -24,29 +24,28 @@ type Email struct{
 	Name 	string 
 }
 func TestDataLoading(t *testing.T){
-	//b := NewBlockers(300)
+	b := NewBlockers(300)
 	path := "./email.json"
 	data := loadJson(path)
-	log.Println(string(data))
+	//log.Println(string(data))
 	var ldstr LoadDataInfo
-	var lddstr LoadDataStr
 	var emails Ed
 
 	var ldfunc LoadData
 	err := json.Unmarshal(data,&emails);if err != nil{
 		panic(err)
 	}
-	log.Printf("%#v\n",emails)
-	ldfunc = func(datajson []byte) (ldd lddstr){
+	//log.Printf("%#v\n",emails)
+	ldfunc = func(datajson []byte) (ldd LoadDataStr){
 		for k,v := range datajson{
 			ldstr.Index = k
 			ldstr.Value = v
-			ldd = append(ldstr,ldd)
+			ldd.data = append(ldd.data,ldstr)
 		}
 		return ldd
 	}
 	
-	b.DataLoading(ldfunc)
+	b.DataLoading(ldfunc,data)
 }
 
 func loadJson(path string) []byte {
