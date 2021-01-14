@@ -32,7 +32,6 @@ func TestDataLoading(t *testing.T){
 
 	var ldfunc LoadData
 	var emails Ed
-	var i int
 	//log.Printf("%#v\n",emails)
 	ldfunc = func(wqq []byte) (ldd LoadDataStr){
 		
@@ -44,8 +43,6 @@ func TestDataLoading(t *testing.T){
 			ldstr.Value = v
 			ldd.data = append(ldd.data,ldstr)
 		}
-		log.Println(i)
-		i++
 		return ldd
 	}
 	
