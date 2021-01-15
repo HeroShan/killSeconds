@@ -2,7 +2,7 @@ package blocker
 
 import(
 	_"os"
-	"log"
+	_"log"
 	_"sync"
 )
 
@@ -51,32 +51,25 @@ func (bs *Blockers)DataLoading(format LoadData,data []byte){
 		temp 	blocker
 		b 	 	blocker
 		mapLen,blockeronMapIndex  int
-		blockeronMap	blocker
 	)
 	
-	//log.Printf("%#v\n",bs.Bmap[0])
-	mapB := bs.Bmap
 	mapLen = bs.Num-1
-	
-	for k,v := range formatData.data{
-		blockeronMap = bs.Bmap[mapLen]
-		blockeronMapIndex = blockeronMap.Index
+	for _,v := range formatData.data{
 		if blockeronMapIndex < bs.Max{
-			for blockeronMap.Next != nil{
-				blockeronMap = *blockeronMap.Next
-			}
-			//log.Println(k)
-			temp.Index = k
+			//头部链表追加
+			temp.Index = blockeronMapIndex
 			temp.Value = v
-			blockeronMap.Next = &temp
+			temp.Next = &bs.Bmap[mapLen]
+			bs.Bmap[mapLen] = temp
+			blockeronMapIndex++
 		}else{
 			mapLen++
 			//指针操作map 分片赋值
-			mapB = append(mapB,b)
+			//桶满分配下一个空桶
+			bs.Bmap = append(bs.Bmap,b)
+			blockeronMapIndex = 0
 		}
 	}
-
-	log.Printf("%#v\n",len(bs.Bmap))
 	
 	
 }

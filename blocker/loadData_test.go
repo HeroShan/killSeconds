@@ -47,6 +47,7 @@ func TestDataLoading(t *testing.T){
 	}
 	
 	b.DataLoading(ldfunc,data)
+	log.Printf("%#v",len(b.Bmap))
 }
 
 func loadJson(path string) []byte {
