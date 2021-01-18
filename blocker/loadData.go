@@ -1,11 +1,5 @@
 package blocker
 
-import(
-	_"os"
-	_"log"
-	_"sync"
-)
-
 type Blockers struct{
 	Bmap	[]blocker
 	Num	int
@@ -19,29 +13,39 @@ type blocker struct{
 	Value	interface{}
 	Next 	*blocker
 }
-
+type Options interface{}
 type LoadData func(data []byte) LoadDataStr
 type LoadDataInfo struct{
 	Index int
 	Value interface{}
 }
 type LoadDataStr struct{
-	data []LoadDataInfo
+	Data []LoadDataInfo
+	Op	 *Options
 }
 
 func NewBlockers(blockerMax int) *Blockers{
-	var b blocker
-	b.Index = 0
-	b.Value = nil
-	b.Next  = nil
-	bs := new(Blockers)
-	var bmap  []blocker
+	var(
+		b 	blocker
+		bs 	Blockers
+		bmap  []blocker
+	)
+	b = blocker{
+		Index : 0,
+		Value : nil,
+		Next  : &b,
+	}
 	bmap = append(bmap,b)
-	bs.Bmap = bmap
 	bs.Num = 1
 	bs.Status = "null"
 	bs.Max = blockerMax
-	return bs
+	bs = Blockers{
+		Bmap 	: bmap,
+		Num  	: 1,
+		Status	: "null",
+		Max		: blockerMax,
+	}
+	return &bs
 	 
 }
 
@@ -52,9 +56,8 @@ func (bs *Blockers)DataLoading(format LoadData,data []byte){
 		b 	 	blocker
 		mapLen,blockeronMapIndex  int
 	)
-	
 	mapLen = bs.Num-1
-	for _,v := range formatData.data{
+	for _,v := range formatData.Data{
 		if blockeronMapIndex < bs.Max{
 			//头部链表追加
 			temp.Index = blockeronMapIndex
@@ -70,10 +73,6 @@ func (bs *Blockers)DataLoading(format LoadData,data []byte){
 			blockeronMapIndex = 0
 		}
 	}
-	
-	
+	formatData.Data = nil	
 }
 
-func chunkBucket(){
-
-}

@@ -24,7 +24,7 @@ type Email struct{
 	Name 	string 
 }
 func TestDataLoading(t *testing.T){
-	b := NewBlockers(300)
+	b := NewBlockers(1000)
 	path := "./email.json"
 	data := loadJson(path)
 	//log.Println(string(data))
@@ -41,7 +41,7 @@ func TestDataLoading(t *testing.T){
 		for k,v := range emails.Ddd{
 			ldstr.Index = k
 			ldstr.Value = v
-			ldd.data = append(ldd.data,ldstr)
+			ldd.Data = append(ldd.Data,ldstr)
 		}
 		return ldd
 	}
