@@ -1,11 +1,12 @@
 package server
 
-import(
-	"time"
+import (
 	"github.com/gin-gonic/gin"
 	"log"
+	"time"
 )
-//缺少一个初始化秒杀端口
+
+// StartTime 缺少一个初始化秒杀端口
 type StartTime struct{
 	Now string
 }
@@ -17,7 +18,7 @@ func (timeString *StartTime)Start()(bool){
 
 func ks(c *gin.Context){	
 	var t StartTime
-	t.Now = "2020-11-30 14:30:00"
+	t.Now = "2021-03-30 19:48:00"
 	log.Printf("%v\n\n",t.Start())
 	if t.Start() == true {
 		result := TcpClient()

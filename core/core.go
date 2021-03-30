@@ -11,7 +11,7 @@ type Kill struct{
 	stop  bool //停止秒杀
 
 }
-func InitList(n int)(*Kill){
+func InitList(n int) *Kill {
 	var i int
 	list := new(tools.ListNode)
 	for i = 0; i < n; i++{
@@ -23,7 +23,8 @@ func InitList(n int)(*Kill){
 	return kill
 	
 }
-//监听器  监听链表为空停止秒杀
+
+// Monitor 监听器  监听链表为空停止秒杀
 func (kill *Kill)Monitor(){
 	var listLength int
 	for{
@@ -37,7 +38,8 @@ func (kill *Kill)Monitor(){
 	}
 
 }
-//获取一条秒杀记录
+
+// GetKillOption 获取一条秒杀记录
 func (kill *Kill)GetKillOption()(over bool){
 	if kill.stop == true{
 		return kill.stop
