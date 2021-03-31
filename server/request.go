@@ -13,7 +13,7 @@ type StartTime struct{
 func (timeString *StartTime)Start()(bool){
 	t, _ := time.Parse("2006-01-02 15:04:05", timeString.Now)
 	nowTime := time.Now()
-	return t.After(nowTime)
+	return t.Before(nowTime)
 }
 
 func ks(c *gin.Context){	

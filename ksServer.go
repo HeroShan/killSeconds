@@ -2,7 +2,9 @@ package main
 
 import (
 	"SecondsKill/core"
+	"log"
 	"net"
+	"time"
 )
 
 //TcpServer
@@ -10,7 +12,7 @@ func main() {
 	var over bool
 	var writeMsg string
 	//初始化秒杀链表
-	kill := core.InitList(1000)
+	kill := core.InitList(5)
 	go kill.Monitor()
 	listener,_ := net.Listen("tcp","127.0.0.1:9999")
 	
@@ -28,6 +30,7 @@ func main() {
 			}else{
 				writeMsg = "秒杀成功"
 			}
+			log.Println(writeMsg,"timeis:",time.Now().UnixNano())
 			conn.Write([]byte(writeMsg))
 		}
 	}
