@@ -1,8 +1,8 @@
 
 package server
- 
+
 import (
-    "net"
+	"net"
 )
  
 func TcpClient()(string){
@@ -10,7 +10,6 @@ func TcpClient()(string){
     conn, _ := net.Dial("tcp", "127.0.0.1:9999")
  
     defer conn.Close()
- 
     //发送数据
     conn.Write([]byte("kill"))
     buf := make([]byte, 512) //1024大小的缓冲区

@@ -6,6 +6,7 @@ import (
 )
 
 func TestGetConfig(t *testing.T) {
-	c := GetConfig()
-	fmt.Printf("%#v\n",c)
+	conf := new(Config)
+	conf.GetConfig()
+	fmt.Printf("%#v\n",conf)
 }

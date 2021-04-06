@@ -1,8 +1,9 @@
 package main
 
-import(
+import (
 	"SecondsKill/server"
 )
 func main(){
+
 	server.GinHttp()	
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"SecondsKill/core"
+	"SecondsKill/register"
 	"log"
 	"net"
 	"time"
@@ -15,7 +16,16 @@ func main() {
 	kill := core.InitList(5)
 	go kill.Monitor()
 	listener,_ := net.Listen("tcp","127.0.0.1:9999")
-	
+	//服务注册
+	var service register.ServiceSource
+	service.Name = "killTCP"
+	service.Port = 9999
+	service.Tags = append(service.Tags,"service kill tcp")
+	service.Addr = "127.0.0.1"
+	serviceRestul := register.RegisterService(&service)
+	if !serviceRestul{
+		panic("gin server is shutdown")
+	}
 	for{
 		conn ,_ := listener.Accept()
 		//接收用户的请求

@@ -1,6 +1,7 @@
 package server
 
 import (
+	"SecondsKill/register"
 	"github.com/gin-gonic/gin"
 	"log"
 	"time"
@@ -32,9 +33,19 @@ func ks(c *gin.Context){
 
 func GinHttp(){
 	router := gin.Default()
+	//服务注册
+	var service register.ServiceSource
+	service.Name = "ginHTTP"
+	service.Port = 1997
+	service.Tags = append(service.Tags,"service kill tcp")
+	service.Addr = "47.104.225.152"
+	serviceRestul := register.RegisterService(&service)
+	if !serviceRestul{
+		panic("gin server is shutdown")
+	}
 	root := router.Group("/")
 	{
 		root.GET("/ks",ks)
 	}
-	router.Run()
+	router.Run("0.0.0.0:1997")
 }
